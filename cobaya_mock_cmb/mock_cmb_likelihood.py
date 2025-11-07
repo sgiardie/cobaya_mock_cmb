@@ -184,7 +184,7 @@ class MockCMBLikelihood(Likelihood):
         if os.path.exists(delensing_filename):
             delensing_cont = np.loadtxt(delensing_filename).T
             ll = delensing_cont[0].astype(int)
-            self.noise_delensing[ll] = delensing_cont[2]/(ll*(ll+1)/2./np.pi)
+            self.noise_delensing[ll] = delensing_cont[2] #/(ll*(ll+1)/2./np.pi)
             # change 3 to 4 in the above line for CMBxCIB delensing
 
         else:

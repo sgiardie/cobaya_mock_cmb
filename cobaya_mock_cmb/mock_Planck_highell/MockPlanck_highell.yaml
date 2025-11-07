@@ -1,0 +1,26 @@
+# Here, Planck is modelled as in (1611.05883), with two effective channels (adapted to Cobaya by MR)
+
+# where to read/write fiducial model:
+
+data_directory: null
+fiducial_file: mock_Planck_highell_fiducial.dat
+noise_from_file: False
+
+# experimental sensitivity:
+# l_min=30 and f_sky=0.2 to add to mock likelihoods for future experiments.
+
+l_min: 30
+l_max: 2500
+f_sky: 0.2
+
+num_channels: 9
+
+theta_fwhm: [33.,23.,14.,9.5,7.1,5.0,5.0,5.0,5.0]
+
+sigma_T: [1.44805815e+02,1.49193870e+02,1.36983630e+02,6.44717025e+01,4.25723100e+01,6.55482750e+01,2.00324250e+02,2.00324250e+03,9.14814075e+04
+]
+
+sigma_P: [1e30,1e30,4.5e+02,103.,81.3,134.,406.,1e30,1e30]
+
+
+LensingExtraction: False

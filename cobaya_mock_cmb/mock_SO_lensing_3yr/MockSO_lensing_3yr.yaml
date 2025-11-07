@@ -1,0 +1,18 @@
+# Here, Planck is modelled as in (1611.05883), with two effective channels (adapted to Cobaya by MR)
+
+# where to read/write fiducial model:
+
+data_directory: null
+fiducial_file: mock_SO_lensing_3yr_fiducial.dat
+noise_from_file: True
+noise_file: noise_SO_lensing_3yr.dat
+
+# experimental sensitivity:
+# l_min=30 and f_sky=0.2 to add to mock likelihoods for future experiments.
+
+l_min: 30
+l_max: 3000
+f_sky: 0.4
+
+LensingExtraction: True
+ExcludeTTTEEE: True

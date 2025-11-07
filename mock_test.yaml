@@ -20,6 +20,40 @@ likelihood:
     python_path: .
   cobaya_mock_cmb.MockCMBS4sens0:
     python_path: .
+  cobaya_mock_cmb.MockPlanck_lowell_T:
+    python_path: .
+  cobaya_mock_cmb.MockPlanck_lowell_E:
+    python_path: .
+  cobaya_mock_cmb.MockPlanck_highell:
+    python_path: .
+  cobaya_mock_cmb.MockPlanck_highell_lensing:
+    python_path: .
+  cobaya_mock_cmb.MockPlanck_only_highell:
+    python_path: .
+  cobaya_mock_cmb.MockPlanck_only_highell_lensing:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_1yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_2yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_3yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_4yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_5yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_6yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_7yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_8yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_9yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_10yr:
+    python_path: .
+  cobaya_mock_cmb.MockSO_lensing_baseline:
+    python_path: .
   # in real runs one should use only one among all SO and CMB-S4
   # with possible addition of mock Planck, which is made independent of SO
   cobaya_mock_cmb.MockPlanck:

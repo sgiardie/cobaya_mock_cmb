@@ -61,8 +61,12 @@ class MockCMBLikelihood(Likelihood):
                               "seem to have lensing extraction enabled")
         # added by Siavash Yasini
         self.OnlyTT = getattr(self, 'OnlyTT', False)
+        self.OnlyEE = getattr(self, 'OnlyEE', False)
         if self.OnlyTT and self.ExcludeTTTEEE:
             raise LoggedError(self.log, "OnlyTT and ExcludeTTTEEE cannot be "
+                                        "used simultaneously.")
+        if self.OnlyEE and self.ExcludeTTTEEE:
+            raise LoggedError(self.log, "OnlyEE and ExcludeTTTEEE cannot be "
                                         "used simultaneously.")
 
         self.init_noise()
@@ -85,6 +89,7 @@ class MockCMBLikelihood(Likelihood):
         self.log.info("neglect_TD is %s" % str(self.neglect_TD))
         self.log.info("ExcludeTTTEEE is %s" % str(self.ExcludeTTTEEE))
         self.log.info("OnlyTT is %s" % str(self.OnlyTT))
+        self.log.info("OnlyEE is %s" % str(self.OnlyEE))
 
     def init_noise(self):
         """
@@ -116,7 +121,7 @@ class MockCMBLikelihood(Likelihood):
                 if self.LensingExtraction:
                     try:
                         # read noise for C_l^dd = l(l+1) C_l^pp
-                        self.Nldd[ll] = noise_content[3]/(ll*(ll+1)/2./np.pi)
+                        self.Nldd[ll] = noise_content[3] #/(ll*(ll+1)/2./np.pi)
                     except IndexError:
                         raise LoggedError(self.log,
                                           "For reading lensing noise from "
@@ -233,8 +238,8 @@ class MockCMBLikelihood(Likelihood):
                     ll = temporary_Nldd_content[0].astype(int)
                     # this line assumes that Nldd is stored in the 4th column
                     # (can be customised)
-                    self.Nldd[ll] = temporary_Nldd_content[3]/(ll*(ll+1.) /
-                                                               2./np.pi)
+                    self.Nldd[ll] = temporary_Nldd_content[3] #/(ll*(ll+1.) /
+                                                              # 2./np.pi)
                 else:
                     raise LoggedError(self.log, "Could not find file %s" %
                                       temporary_Nldd_fname)
@@ -270,7 +275,7 @@ class MockCMBLikelihood(Likelihood):
         # spectra = TT,EE,TE,[BB],[DD,TD]
         # default:
         if not self.ExcludeTTTEEE:
-            if self.OnlyTT:
+            if self.OnlyTT or self.OnlyEE:
                 self.num_modes = 1
             else:
                 self.num_modes = 2
@@ -301,7 +306,9 @@ class MockCMBLikelihood(Likelihood):
         if not self.ExcludeTTTEEE:
             if self.OnlyTT:
                 cl_req[self.unlensed_clTTTEEE]['tt'] = self.l_max
-            else:
+            if self.OnlyEE:
+                cl_req[self.unlensed_clTTTEEE]['ee'] = self.l_max
+            if not self.OnlyTT and not self.OnlyEE:
                 cl_req[self.unlensed_clTTTEEE].update({'tt': self.l_max,
                                                        'te': self.l_max,
                                                        'ee': self.l_max})
@@ -438,6 +445,9 @@ class MockCMBLikelihood(Likelihood):
         elif self.OnlyTT:
             Cov_the = np.array([[cl['tt'][ll]+self.noise_T[ll]]])
 
+        elif self.OnlyEE:
+            Cov_the = np.array([[cl['ee'][ll]+self.noise_P[ll]]])
+
         # case without B modes nor lensing:
         else:
             Cov_the = np.array([[cl['tt'][ll]+self.noise_T[ll], cl['te'][ll]],
@@ -494,6 +504,9 @@ class MockCMBLikelihood(Likelihood):
         # case with TT only (Added by Siavash Yasini)
         elif self.OnlyTT:
             Cov_obs = np.array([[self.Cl_fid[0, ll]]])
+
+        elif self.OnlyEE:
+            Cov_obs = np.array([[self.Cl_fid[1, ll]]])
 
         # case without B modes nor lensing:
         else:

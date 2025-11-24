@@ -36,7 +36,8 @@ info_fiducial = {
                    'cobaya_mock_cmb.MockSO_lensing_10yr': {'python_path': '/nfshome/store01/groups/scw1361/sgiardie/mflike/cobaya_mock_cmb/cobaya_mock_cmb/mock_SO_lensing_10yr'},
                    'cobaya_mock_cmb.MockSO_lensing_baseline': {'python_path': '/nfshome/store01/groups/scw1361/sgiardie/mflike/cobaya_mock_cmb/cobaya_mock_cmb/mock_SO_lensing_baseline'},
                   # 'cobaya_mock_cmb.MockCMBS4sens0': {'python_path': '.'},
-                  # 'cobaya_mock_cmb.MockPlanck': {'python_path': '.'}
+                   'cobaya_mock_cmb.MockSOBaseline': {'python_path': '/nfshome/store01/groups/scw1361/sgiardie/mflike/cobaya_mock_cmb/cobaya_mock_cmb/mock_SO_baseline'},
+                   'cobaya_mock_cmb.MockSOGoal': {'python_path': '/nfshome/store01/groups/scw1361/sgiardie/mflike/cobaya_mock_cmb/cobaya_mock_cmb/mock_SO_goal'},
                    },
     'theory': {"cosmopower":
     {"python_path": "/home/scw1361/sgiardie/mflike/cosmopower-itrharrison/",
